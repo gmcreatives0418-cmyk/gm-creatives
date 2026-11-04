@@ -44,6 +44,33 @@
   transform: translateY(-2px);
 }
 
+.instaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--red);
+  border: 2px solid var(--red);
+  border-radius: var(--radius);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition);
+}
+
+.instaButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.instaButton:hover {
+  background: transparent;
+  border-color: var(--red);
+  color: var(--red);
+  transform: translateY(-2px);
+}
+
 .cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

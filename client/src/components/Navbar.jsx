@@ -6,9 +6,9 @@ import navLogo from '../assets/images/nav-logo.png';
 const NAV_LINKS = [
   { label: 'Home',     to: '/'         },
   { label: 'Services', to: '/services' },
-  { label: 'Work',     to: '#'         },
-  { label: 'About',    to: '#'         },
-  { label: 'Contact',  to: '#contact'  },
+  { label: 'Work',     to: '/work'     },
+  { label: 'About',    to: '/about'    },
+  { label: 'Contact',  to: '/contact'  },
 ];
 
 export default function Navbar() {

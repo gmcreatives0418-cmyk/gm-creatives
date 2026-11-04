@@ -1,0 +1,403 @@
+/* Hero Section */
+.hero {
+  padding: 120px 0 80px;
+  background: var(--off-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(163, 22, 33, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--dark);
+  line-height: 1.15;
+  margin: 24px 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  color: var(--mid-gray);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* Services Grid */
+.servicesGrid {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.serviceRow {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  margin-bottom: 120px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.serviceRow.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.serviceRow:last-child {
+  margin-bottom: 0;
+}
+
+.serviceVisual {
+  flex: 0 0 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.iconBox {
+  width: 280px;
+  height: 280px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(163, 22, 33, 0.08) 0%, rgba(163, 22, 33, 0.03) 100%);
+  border: 2px solid rgba(163, 22, 33, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  transition: all var(--transition);
+}
+
+.iconBox svg {
+  width: 120px;
+  height: 120px;
+}
+
+.serviceRow:hover .iconBox {
+  background: linear-gradient(135deg, rgba(163, 22, 33, 0.15) 0%, rgba(163, 22, 33, 0.08) 100%);
+  border-color: var(--red);
+  transform: scale(1.05);
+}
+
+.serviceContent {
+  flex: 1;
+  color: var(--dark);
+}
+
+.serviceNumber {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+
+.serviceTitle {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+}
+
+.serviceTagline {
+  font-size: 1.2rem;
+  color: var(--mid-gray);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.serviceDesc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(10, 10, 10, 0.65);
+  margin-bottom: 40px;
+}
+
+.benefitsSection,
+.deliverablesSection {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.benefitsList li {
+  font-size: 0.95rem;
+  color: rgba(10, 10, 10, 0.7);
+  line-height: 1.6;
+  padding-left: 24px;
+  position: relative;
+}
+
+.benefitsList li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.deliverablesTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.deliverableTag {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(163, 22, 33, 0.08);
+  border: 1px solid rgba(163, 22, 33, 0.25);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--red);
+  transition: all var(--transition);
+}
+
+.deliverableTag:hover {
+  background: rgba(163, 22, 33, 0.15);
+  border-color: var(--red);
+  color: var(--dark);
+}
+
+/* CTA Section */
+.cta {
+  padding: 100px 0;
+  background: var(--red);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: var(--white);
+}
+
+.ctaContent h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.ctaContent p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .serviceRow {
+    flex-direction: column !important;
+    gap: 48px;
+    margin-bottom: 80px;
+  }
+
+  .serviceVisual {
+    flex: 1;
+    width: 100%;
+  }
+
+  .iconBox {
+    width: 240px;
+    height: 240px;
+  }
+
+  .iconBox svg {
+    width: 100px;
+    height: 100px;
+  }
+
+  .serviceTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 0 60px;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .servicesGrid {
+    padding: 60px 0;
+  }
+
+  .serviceRow {
+    margin-bottom: 60px;
+  }
+
+  .serviceVisual {
+    height: 240px;
+  }
+
+  .iconBox {
+    width: 200px;
+    height: 200px;
+  }
+
+  .iconBox svg {
+    width: 80px;
+    height: 80px;
+  }
+
+  .serviceTitle {
+    font-size: 1.6rem;
+  }
+
+  .serviceTagline {
+    font-size: 1rem;
+  }
+
+  .serviceDesc {
+    font-size: 0.95rem;
+  }
+
+  .deliverablesTags {
+    gap: 8px;
+  }
+
+  .deliverableTag {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .cta {
+    padding: 60px 0;
+  }
+
+  .ctaContent h2 {
+    font-size: 1.8rem;
+  }
+
+  .ctaContent p {
+    font-size: 1rem;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 540px) {
+  .hero {
+    padding: 60px 0 40px;
+  }
+
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.95rem;
+  }
+
+  .servicesGrid {
+    padding: 40px 0;
+  }
+
+  .serviceRow {
+    margin-bottom: 40px;
+  }
+
+  .iconBox {
+    width: 160px;
+    height: 160px;
+  }
+
+  .iconBox svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .serviceTitle {
+    font-size: 1.3rem;
+  }
+
+  .benefitsList li {
+    font-size: 0.9rem;
+    padding-left: 20px;
+  }
+
+  .deliverablesTags {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .deliverableTag {
+    display: block;
+    text-align: center;
+  }
+
+  .cta {
+    padding: 40px 0;
+  }
+
+  .ctaContent h2 {
+    font-size: 1.3rem;
+  }
+
+  .ctaContent p {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+}

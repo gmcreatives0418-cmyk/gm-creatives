@@ -43,7 +43,7 @@ export default function Hero() {
           </h1>
 
           <p className={styles.sub}>
-            Eight disciplines, one team. From brand identity to AI automation —
+            Eight disciplines, one team. From brand identity to digital marketing —
             we handle every piece of your digital presence.
           </p>
 
@@ -92,7 +92,7 @@ export default function Hero() {
                   </text>
                 </svg>
               </div>
-              <p className={styles.cardTag}>Design · Build · Automate</p>
+              <p className={styles.cardTag}>Design · Build · Grow</p>
 
               {/* Pill tags */}
               <div className={styles.pills}>

@@ -6,7 +6,7 @@ const STEPS = [
   { num: '02', title: 'Strategize', desc: 'Define the creative and digital direction.' },
   { num: '03', title: 'Design',     desc: 'Build the visual language and the experience.' },
   { num: '04', title: 'Build',      desc: 'Turn the design into a working digital product.' },
-  { num: '05', title: 'Automate',   desc: 'Find the repetitive processes and build intelligent workflows.' },
+  { num: '05', title: 'Optimise',   desc: 'Refine performance, test results and improve continuously.' },
   { num: '06', title: 'Launch',     desc: 'Deploy, test and refine.' },
 ];
 

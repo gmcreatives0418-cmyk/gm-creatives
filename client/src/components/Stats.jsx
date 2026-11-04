@@ -4,7 +4,7 @@ import styles from './Stats.module.css';
 const STATS = [
   { value: 40,  suffix: '+', label: 'Brands Served',      desc: 'Across retail, food, tech, education and more' },
   { value: 98,  suffix: '%', label: 'Client Satisfaction', desc: 'Measured across every completed project'       },
-  { value: 5,   suffix: '+', label: 'Years Experience',    desc: 'Delivering brand and digital excellence'       },
+  { value: 10,   suffix: '+', label: 'Years Experience',    desc: 'Delivering brand and digital excellence'       },
   { value: 200, suffix: '+', label: 'Projects Delivered',  desc: 'From logos to full digital platforms'          },
 ];
 
