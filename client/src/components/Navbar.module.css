@@ -1,0 +1,93 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow var(--transition);
+}
+.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  height: var(--nav-h);
+}
+
+.logo { flex-shrink: 0; }
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: auto;
+}
+
+.link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color var(--transition);
+}
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--red);
+  border-radius: 2px;
+  transition: width var(--transition);
+}
+.link:hover::after,
+.active::after { width: 100%; }
+.active { color: var(--red); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  margin-left: auto;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu */
+.mobile {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.mobile ul { display: flex; flex-direction: column; gap: 4px; }
+.mobileLink {
+  display: block;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--dark);
+  border-bottom: 1px solid var(--border);
+  transition: color var(--transition);
+}
+.mobileLink:hover { color: var(--red); }
+
+@media (max-width: 900px) {
+  .links, .inner > .btn--nav { display: none; }
+  .hamburger { display: flex; }
+}

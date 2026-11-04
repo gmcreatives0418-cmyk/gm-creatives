@@ -1,0 +1,98 @@
+.section {
+  padding: 100px 0;
+  background: var(--off-white);
+}
+
+.header {
+  margin-bottom: 64px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--red);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.tagNum {
+  background: var(--red);
+  color: var(--white);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.sub {
+  max-width: 480px;
+  color: var(--mid-gray);
+  margin-top: 16px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Steps list */
+.steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 32px;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  transition: all var(--transition);
+}
+.step:last-child { border-bottom: none; }
+
+.step:hover .stepNum {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+}
+.step:hover .stepBody h3 { color: var(--red); }
+
+.stepNum {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--red);
+  background: var(--white);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.stepBody h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+  transition: color var(--transition);
+}
+
+.stepBody p {
+  font-size: 1rem;
+  color: var(--mid-gray);
+  line-height: 1.65;
+  max-width: 520px;
+}
+
+@media (max-width: 640px) {
+  .step { grid-template-columns: 56px 1fr; gap: 18px; }
+  .stepNum { width: 50px; height: 50px; font-size: 0.72rem; }
+  .stepBody h3 { font-size: 1.2rem; }
+}
