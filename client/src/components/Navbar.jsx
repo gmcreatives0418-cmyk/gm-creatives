@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import Logo from './Logo';
+import navLogo from '../assets/images/nav-logo.png';
 
 const NAV_LINKS = [
   { label: 'Home',     to: '/'         },
@@ -39,7 +39,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link to="/" className={styles.logo} aria-label="GM Creatives home">
-          <Logo />
+          <img src={navLogo} alt="GM Creatives" className={styles.logoImg} />
         </Link>
 
         {/* Desktop links */}

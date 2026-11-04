@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import Logo from './Logo';
+import footerLogo from '../assets/images/footer-logo.png';
 import styles from './Footer.module.css';
 
 const SERVICES_COL = ['Brand Identity', 'Graphic Design', 'Motion Design', 'UI / UX Design'];
-const MORE_COL     = ['Web Design', 'Web Development', 'AI Automation', 'Digital Strategy'];
+const MORE_COL     = ['Web Design', 'Web Development', 'Digital Marketing', 'Google & Meta Ads'];
 const COMPANY_COL  = [
   { label: 'About Us',  to: '#' },
   { label: 'Our Work',  to: '#' },
@@ -48,7 +48,7 @@ export default function Footer() {
 
           {/* Brand column */}
           <div className={styles.brand}>
-            <Logo height={42} inverted />
+            <img src={footerLogo} alt="GM Creatives" className={styles.footerLogo} />
             <p>Design. Build. Automate.<br />Eight disciplines, one team.</p>
             <div className={styles.socials}>
               {[

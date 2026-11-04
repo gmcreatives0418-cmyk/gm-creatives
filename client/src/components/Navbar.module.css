@@ -19,6 +19,13 @@
 
 .logo { flex-shrink: 0; }
 
+.logoImg {
+  height: 64px;
+  width: 100px;
+  display: block;
+  object-fit: contain;
+}
+
 .links {
   display: flex;
   align-items: center;
