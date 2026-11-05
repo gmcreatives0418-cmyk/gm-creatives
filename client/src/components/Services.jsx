@@ -124,7 +124,7 @@ function ServiceCard({ service, delay }) {
       <h3 className={styles.cardTitle}>{service.title}</h3>
       <p className={styles.cardDesc}>{service.description}</p>
       <Link to="/services" className={styles.cardLink}>
-        Get Started <span aria-hidden="true">→</span>
+        View more <span aria-hidden="true">→</span>
       </Link>
     </article>
   );

@@ -45,9 +45,25 @@ export default function Hero() {
 
           {/* Social proof bar */}
           <div className={styles.proof}>
-            <div className={styles.avatars} aria-hidden="true">
-              {['A','B','C','D'].map((l) => (
-                <span key={l} className={styles.avatar}>{l}</span>
+            <div className={styles.avatars}>
+              {[
+                { name: 'Logo 1', src: '/logos/logo-1.svg' },
+                { name: 'Logo 2', src: '/logos/logo-2.svg' },
+                { name: 'Logo 3', src: '/logos/logo-3.svg' },
+                { name: 'Logo 4', src: '/logos/logo-4.svg' },
+              ].map((logo) => (
+                <button
+                  key={logo.name}
+                  className={styles.avatar}
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                  }}
+                  aria-label={`${logo.name} - Scroll to top`}
+                  type="button"
+                >
+                  <img src={logo.src} alt={logo.name} loading="lazy" />
+                </button>
               ))}
             </div>
             <p>

@@ -85,9 +85,18 @@ export default function Brands() {
           aria-hidden="true"
         >
           {TRACK_ITEMS.map((brand, i) => (
-            <div key={`${brand.name}-${i}`} className={styles.pill}>
+            <button
+              key={`${brand.name}-${i}`}
+              className={styles.pill}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+              }}
+              type="button"
+              aria-label={`${brand.name} - Scroll to top`}
+            >
               <img src={brand.image} alt={brand.name} className={styles.brandImage} />
-            </div>
+            </button>
           ))}
         </div>
       </div>

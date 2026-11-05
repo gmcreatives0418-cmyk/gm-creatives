@@ -1,0 +1,22 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#0f2b3f" stroke="#c7a76f" stroke-width="3"/>
+  
+  <!-- Inner circle with pattern -->
+  <circle cx="100" cy="100" r="75" fill="none" stroke="#c7a76f" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Decorative elements -->
+  <g transform="translate(100, 100)" fill="none" stroke="#c7a76f" stroke-width="2">
+    <!-- Small circles in corners -->
+    <circle cx="-35" cy="-35" r="8" stroke-width="1.5"/>
+    <circle cx="35" cy="-35" r="8" stroke-width="1.5"/>
+    <circle cx="-35" cy="35" r="8" stroke-width="1.5"/>
+    <circle cx="35" cy="35" r="8" stroke-width="1.5"/>
+    
+    <!-- Central design -->
+    <text x="0" y="8" font-size="32" font-weight="bold" fill="#c7a76f" text-anchor="middle" font-family="Georgia, serif">PC</text>
+  </g>
+  
+  <!-- Bottom text -->
+  <text x="100" y="160" font-size="9" font-weight="600" fill="#c7a76f" text-anchor="middle" letter-spacing="1">STUDIO</text>
+</svg>

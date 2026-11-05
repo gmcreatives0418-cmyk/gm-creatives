@@ -48,6 +48,7 @@ export default function ContactModal() {
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {
+    // Don't auto-open if user is already on contact page
     if (location.pathname !== '/' || autoOpenedRef.current) return;
 
     const timer = setTimeout(() => {
@@ -130,10 +131,6 @@ export default function ContactModal() {
       if (response.ok) {
         setStatus('success');
         setForm(INITIAL);
-        setTimeout(() => {
-          closeModal();
-          setStatus('idle');
-        }, 2000);
       } else {
         console.error('Error:', data);
         // Check if it's a rate limit error from backend
@@ -143,13 +140,11 @@ export default function ContactModal() {
           setErrors({ submit: data.error || 'Failed to send message' });
         }
         setStatus('error');
-        setTimeout(() => setStatus('idle'), 3000);
       }
     } catch (error) {
       console.error('Error sending message:', error);
       setErrors({ submit: 'Network error. Please check your connection.' });
       setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
     }
   };
 
@@ -188,14 +183,30 @@ export default function ContactModal() {
               <CheckIcon />
               <h3>Message Sent!</h3>
               <p>Thanks for reaching out. We'll get back to you within 24 hours.</p>
+              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
+                <button className="btn btn--red" onClick={() => {
+                  setStatus('idle');
+                  setForm(INITIAL);
+                }}>
+                  Send Another Message
+                </button>
+                <button className="btn btn--white" style={{ borderColor: '#A31621', color: '#A31621' }} onClick={closeModal}>
+                  Close
+                </button>
+              </div>
             </div>
           ) : status === 'error' ? (
             <div className={styles.error} role="status" aria-live="polite">
               <h3>Oops, something went wrong</h3>
               <p>{errors.submit || 'We couldn\'t send your message. Please try again.'}</p>
-              <button className="btn btn--red" onClick={() => setStatus('idle')}>
-                Try Again
-              </button>
+              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
+                <button className="btn btn--red" onClick={() => setStatus('idle')}>
+                  Try Again
+                </button>
+                <button className="btn btn--white" style={{ borderColor: '#A31621', color: '#A31621' }} onClick={closeModal}>
+                  Close
+                </button>
+              </div>
             </div>
           ) : (
             <>
