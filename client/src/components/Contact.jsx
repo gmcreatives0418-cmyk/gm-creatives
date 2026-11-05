@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContactModal } from '../contexts/ContactModalContext';
 import styles from './Contact.module.css';
 
 const SERVICES = [
@@ -39,9 +40,15 @@ const CheckIcon = () => (
 );
 
 export default function Contact() {
+  const { closeModal } = useContactModal();
   const [form,   setForm]   = useState(INITIAL);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle'); // idle | submitting | success
+  const [status, setStatus] = useState('idle');
+
+  // Close modal when user reaches contact section
+  useEffect(() => {
+    closeModal();
+  }, [closeModal]); // idle | submitting | success
 
   const textRef = useRef(null);
   const formRef = useRef(null);

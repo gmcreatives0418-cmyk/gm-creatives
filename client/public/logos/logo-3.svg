@@ -1,0 +1,22 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#f5e6d3" stroke="#d4a574" stroke-width="2"/>
+  
+  <!-- Decorative outer ring -->
+  <circle cx="100" cy="100" r="82" fill="none" stroke="#d4a574" stroke-width="1" opacity="0.4" stroke-dasharray="2,3"/>
+  
+  <!-- Inner decorative elements -->
+  <g transform="translate(100, 100)">
+    <!-- Leaf/branch left -->
+    <path d="M -25 -10 Q -30 -20 -25 -30" stroke="#c9a563" stroke-width="1.5" fill="none" opacity="0.8"/>
+    <path d="M -20 -15 L -25 -25" stroke="#c9a563" stroke-width="1" fill="none" opacity="0.6"/>
+    
+    <!-- Leaf/branch right -->
+    <path d="M 25 -10 Q 30 -20 25 -30" stroke="#c9a563" stroke-width="1.5" fill="none" opacity="0.8"/>
+    <path d="M 20 -15 L 25 -25" stroke="#c9a563" stroke-width="1" fill="none" opacity="0.6"/>
+    
+    <!-- Central text -->
+    <text x="0" y="0" font-size="24" font-weight="bold" fill="#8b6f47" text-anchor="middle" font-family="Georgia, serif">GM</text>
+    <text x="0" y="18" font-size="8" font-weight="600" fill="#c9a563" text-anchor="middle" letter-spacing="1">BAKERY</text>
+  </g>
+</svg>

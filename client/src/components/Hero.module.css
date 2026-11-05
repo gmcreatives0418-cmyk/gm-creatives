@@ -142,8 +142,31 @@
   font-weight: 800;
   color: var(--white);
   margin-left: -8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--red);
 }
 .avatar:first-child { margin-left: 0; }
+.avatar:hover {
+  transform: scale(1.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.avatar:active {
+  transform: scale(0.95);
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+}
 
 .proof p {
   font-size: 0.85rem;

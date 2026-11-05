@@ -8,7 +8,7 @@ A modern, responsive React frontend for GM Creatives services website featuring 
 - **Fully Responsive**: Mobile, tablet, and desktop optimized
 - **8 Services**: Each with custom SVG icons
 - **Case Studies**: 6 detailed case study pages with Challenge → Solution → Approach → Results
-- **Contact Form**: Functional contact form that sends emails to `kaur04kamal@gmail.com`
+- **Contact Form**: Functional contact form that sends emails to `gmcreatives0418@gmail.com`
 - **Instagram Integration**: Social links point to Instagram only
 - **Performance**: Optimized build (261 KB JS, 59 KB CSS)
 - **React Router**: 6 pages with smooth navigation
@@ -184,9 +184,9 @@ VITE_API_URL=https://your-backend-url.com
 **Backend** (set in deployment platform):
 ```
 PORT=5000
-EMAIL_USER=kaur04kamal@gmail.com
+EMAIL_USER=gmcreatives0418@gmail.com
 EMAIL_PASS=your_app_password
-EMAIL_TO=kaur04kamal@gmail.com
+EMAIL_TO=gmcreatives0418@gmail.com
 NODE_ENV=production
 CLIENT_URL=https://your-frontend-url.com
 ```
@@ -302,7 +302,7 @@ All rights reserved - GM Creatives
 
 1. ✅ Frontend built and tested
 2. ✅ Backend configured and running
-3. ✅ Emails sending to kaur04kamal@gmail.com
+3. ✅ Emails sending to gmcreatives0418@gmail.com
 4. ✅ All pages functional
 5. ✅ Responsive on all devices
 

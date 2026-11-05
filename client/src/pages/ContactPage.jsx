@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useContactModal } from '../contexts/ContactModalContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './ContactPage.module.css';
 
@@ -27,20 +28,14 @@ const CONTACT_INFO = [
   {
     icon: '📧',
     label: 'Email',
-    value: 'hello@gmcreatives.com',
-    link: 'mailto:hello@gmcreatives.com',
+    value: 'gmcreatives0418@gmail.com',
+    link: 'mailto:gmcreatives0418@gmail.com',
   },
   {
     icon: '📱',
     label: 'Phone',
-    value: '+1 (555) 123-4567',
+    value: '+91 884 737 8590',
     link: 'tel:+15551234567',
-  },
-  {
-    icon: '📍',
-    label: 'Location',
-    value: 'Available Worldwide',
-    link: '#',
   },
   {
     icon: '⏰',
@@ -84,6 +79,7 @@ function InfoCard({ info, index }) {
 }
 
 export default function ContactPage() {
+  const { closeModal } = useContactModal();
   const lastSubmitTimeRef = useRef(0);
   const [form, setForm] = useState(INITIAL);
   const [errors, setErrors] = useState({});
@@ -91,9 +87,11 @@ export default function ContactPage() {
 
   const headerRef = useScrollReveal();
 
+  // Close modal when user visits contact page
   useEffect(() => {
+    closeModal();
     window.scrollTo(0, 0);
-  }, []);
+  }, [closeModal]);
 
   const validate = () => {
     const e = {};
@@ -156,7 +154,6 @@ export default function ContactPage() {
       if (response.ok) {
         setStatus('success');
         setForm(INITIAL);
-        setTimeout(() => setStatus('idle'), 3000);
       } else {
         console.error('Error:', data);
         // Check if it's a rate limit error from backend
@@ -166,13 +163,11 @@ export default function ContactPage() {
           setErrors({ submit: data.error || 'Failed to send message' });
         }
         setStatus('error');
-        setTimeout(() => setStatus('idle'), 3000);
       }
     } catch (error) {
       console.error('Error sending message:', error);
       setErrors({ submit: 'Network error. Please check your connection.' });
       setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
     }
   };
 
@@ -219,17 +214,27 @@ export default function ContactPage() {
                 <CheckIcon />
                 <h3>Message Received!</h3>
                 <p>Thanks for reaching out. We'll review your message and get back to you soon.</p>
-                <button className="btn btn--red" onClick={() => setStatus('idle')}>
-                  Send Another Message
-                </button>
+                <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px' }}>
+                  <button className="btn btn--red" onClick={() => setStatus('idle')}>
+                    Send Another Message
+                  </button>
+                  <button className="btn btn--white" style={{ border: '2px solid #A31621', color: '#A31621' }} onClick={() => setStatus('idle')}>
+                    Back to Form
+                  </button>
+                </div>
               </div>
             ) : status === 'error' ? (
               <div className={styles.error} role="status" aria-live="polite" style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#fee', borderRadius: '8px' }}>
                 <h3 style={{ color: '#c00', marginBottom: '10px' }}>Oops, something went wrong</h3>
-                <p style={{ marginBottom: '20px' }}>We couldn't send your message. Please try again or contact us directly at hello@gmcreatives.com</p>
-                <button className="btn btn--red" onClick={() => setStatus('idle')}>
-                  Try Again
-                </button>
+                <p style={{ marginBottom: '20px' }}>{errors.submit || 'We couldn\'t send your message. Please try again.'}</p>
+                <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+                  <button className="btn btn--red" onClick={() => setStatus('idle')}>
+                    Try Again
+                  </button>
+                  <button className="btn btn--white" style={{ border: '2px solid #A31621', color: '#A31621' }} onClick={() => setStatus('idle')}>
+                    Back to Form
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className={styles.form}>

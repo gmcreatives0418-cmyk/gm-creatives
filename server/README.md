@@ -12,7 +12,7 @@ Update `.env` file with your Gmail credentials:
 PORT=5000
 EMAIL_USER=your_gmail@gmail.com
 EMAIL_PASS=your_app_password
-EMAIL_TO=kaur04kamal@gmail.com
+EMAIL_TO=gmcreatives0418@gmail.com
 NODE_ENV=development
 ```
 

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle - bold red -->
+  <circle cx="100" cy="100" r="95" fill="#d32f2f" stroke="#ffffff" stroke-width="3"/>
+  
+  <!-- Inner circle accent -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Bold text in center -->
+  <text x="100" y="115" font-size="56" font-weight="900" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="-2">FIVE</text>
+  
+  <!-- Small accent line -->
+  <line x1="60" y1="140" x2="140" y2="140" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+</svg>
