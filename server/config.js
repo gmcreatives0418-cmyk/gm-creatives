@@ -8,9 +8,7 @@ module.exports = {
     to: process.env.EMAIL_TO,
   },
   cors: {
-    origin: process.env.NODE_ENV === 'production' 
-      ? process.env.CLIENT_URL 
-      : 'http://localhost:5173',
+    origin:process.env.FRONTEND_URL,
     credentials: true,
   },
   nodeEnv: process.env.NODE_ENV,
