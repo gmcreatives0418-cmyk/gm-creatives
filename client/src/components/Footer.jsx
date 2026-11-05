@@ -39,7 +39,7 @@ export default function Footer() {
             <img src={footerLogo} alt="GM Creatives" className={styles.footerLogo} />
             <p>Design. Build. Grow.<br />Eight disciplines, one team.</p>
             <div className={styles.socials}>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className={styles.instaButton}>
+              <a href="https://www.instagram.com/gmcreatives0418/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className={styles.instaButton}>
                 <InstagramIcon />
                 <span>Follow on Instagram</span>
               </a>

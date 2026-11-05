@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useContactModal } from '../contexts/ContactModalContext';
 import styles from './ServicesDetailPage.module.css';
 
 const SERVICES_DETAIL = [
@@ -219,16 +220,12 @@ function ServiceDetail({ service, index }) {
 }
 
 export default function ServicesDetailPage() {
+  const { openModal } = useContactModal();
   const headerRef = useScrollReveal();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   return (
     <>
@@ -259,7 +256,10 @@ export default function ServicesDetailPage() {
           <div className={styles.ctaContent}>
             <h2>Ready to get started?</h2>
             <p>Let's discuss which services are right for your project and how we can help you grow.</p>
-            <a href="#contact" className="btn btn--white" onClick={scrollToContact}>
+            <a href="#contact" className="btn btn--white" onClick={(e) => {
+              e.preventDefault();
+              openModal();
+            }}>
               Start Your Project →
             </a>
           </div>

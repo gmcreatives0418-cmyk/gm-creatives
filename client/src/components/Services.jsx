@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useContactModal } from '../contexts/ContactModalContext';
 import styles from './Services.module.css';
 
 const SERVICES = [
@@ -95,12 +96,6 @@ const SERVICES = [
   },
 ];
 
-const MORE_TAGS = [
-  'SEO Optimisation', 'Email Marketing', 'Content Strategy',
-  'Photography', 'Copywriting', 'Social Media Management',
-  'eCommerce Design', 'Brand Consulting',
-];
-
 function ServiceCard({ service, delay }) {
   const ref = useRef(null);
 
@@ -117,11 +112,6 @@ function ServiceCard({ service, delay }) {
     return () => obs.disconnect();
   }, []);
 
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
     <article
       ref={ref}
@@ -133,15 +123,15 @@ function ServiceCard({ service, delay }) {
       <div className={styles.icon}>{service.icon}</div>
       <h3 className={styles.cardTitle}>{service.title}</h3>
       <p className={styles.cardDesc}>{service.description}</p>
-      <a href="#contact" className={styles.cardLink} onClick={scrollToContact}>
+      <Link to="/services" className={styles.cardLink}>
         Get Started <span aria-hidden="true">→</span>
-      </a>
+      </Link>
     </article>
   );
 }
 
 export default function Services() {
-  const [expanded, setExpanded] = useState(false);
+  const { openModal } = useContactModal();
   const headerRef = useRef(null);
   const moreRef   = useRef(null);
 
@@ -171,11 +161,6 @@ export default function Services() {
     return () => obs.disconnect();
   }, []);
 
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
     <section className={styles.section} id="services" aria-label="Our Services">
       <div className="container">
@@ -200,27 +185,17 @@ export default function Services() {
             <p className={styles.moreLabel}>And much more — one team, endless range.</p>
           </div>
 
-          <div className={`${styles.moreTags} ${expanded ? styles.expanded : ''}`} aria-live="polite">
-            {MORE_TAGS.map((tag) => (
-              <span key={tag} className={styles.moreTag}>{tag}</span>
-            ))}
-          </div>
-
           <div className={styles.moreActions}>
-            <button
-              className={styles.toggleBtn}
-              onClick={() => setExpanded((v) => !v)}
-              aria-expanded={expanded}
-            >
-              {expanded ? 'Show Less ↑' : 'See More Services ↓'}
-            </button>
             <div className={styles.actionButtons}>
               <Link to="/services" className="btn btn--red">
                 View All Services →
               </Link>
-              <a href="#contact" className="btn btn--red" onClick={scrollToContact}>
+              <button 
+                className="btn btn--red" 
+                onClick={openModal}
+              >
                 Discuss Your Project →
-              </a>
+              </button>
             </div>
           </div>
         </div>

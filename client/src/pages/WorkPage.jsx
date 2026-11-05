@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useContactModal } from '../contexts/ContactModalContext';
 import styles from './WorkPage.module.css';
 
 const PROJECTS = [
   {
     id: 1,
+    slug: 'brand-identity',
     title: 'Brand Identity System',
     category: 'Brand Identity',
     description: 'Complete visual identity redesign for a tech startup including logo, color system, typography, and brand guidelines.',
@@ -14,6 +17,7 @@ const PROJECTS = [
   },
   {
     id: 2,
+    slug: 'ecommerce-redesign',
     title: 'E-Commerce Platform Redesign',
     category: 'Web Design & Development',
     description: 'Full-stack redesign of e-commerce platform with improved UX, 40% faster load times, and 35% increase in conversions.',
@@ -23,6 +27,7 @@ const PROJECTS = [
   },
   {
     id: 3,
+    slug: 'social-media-campaign',
     title: 'Social Media Campaign',
     category: 'Digital Marketing',
     description: 'Strategic social media campaign that generated 250K impressions and 15K engaged followers across platforms.',
@@ -32,6 +37,7 @@ const PROJECTS = [
   },
   {
     id: 4,
+    slug: 'motion-graphics',
     title: 'Motion Graphics Series',
     category: 'Motion Design',
     description: 'Animated explainer videos and motion graphics for product launches, increasing engagement by 60%.',
@@ -41,6 +47,7 @@ const PROJECTS = [
   },
   {
     id: 5,
+    slug: 'saas-dashboard',
     title: 'SaaS Dashboard UI',
     category: 'UI / UX Design',
     description: 'Modern dashboard interface for financial software with real-time data visualization and intuitive controls.',
@@ -50,6 +57,7 @@ const PROJECTS = [
   },
   {
     id: 6,
+    slug: 'google-ads',
     title: 'Google Ads Campaign',
     category: 'Google & Meta Ads',
     description: 'High-performing Google Ads campaign with 3.5X ROAS and 250% increase in qualified leads.',
@@ -63,6 +71,7 @@ const CATEGORIES = ['All Work', ...new Set(PROJECTS.map(p => p.category))];
 
 function ProjectCard({ project, index }) {
   const ref = useScrollReveal();
+  const navigate = useNavigate();
 
   return (
     <article
@@ -80,9 +89,12 @@ function ProjectCard({ project, index }) {
             <span key={tag} className={styles.tag}>{tag}</span>
           ))}
         </div>
-        <a href="#contact" className={styles.projectLink}>
+        <button 
+          onClick={() => navigate(`/case-study/${project.slug}`)}
+          className={styles.projectLink}
+        >
           View Case Study <span aria-hidden="true">→</span>
-        </a>
+        </button>
       </div>
     </article>
   );
@@ -90,6 +102,7 @@ function ProjectCard({ project, index }) {
 
 export default function WorkPage() {
   const [activeCategory, setActiveCategory] = useState('All Work');
+  const { openModal } = useContactModal();
   const headerRef = useScrollReveal();
 
   useEffect(() => {
@@ -99,11 +112,6 @@ export default function WorkPage() {
   const filteredProjects = activeCategory === 'All Work'
     ? PROJECTS
     : PROJECTS.filter(p => p.category === activeCategory);
-
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   return (
     <>
@@ -159,7 +167,7 @@ export default function WorkPage() {
           <div className={styles.statsGrid}>
             <div className={`reveal ${styles.statCard}`}>
               <div className={styles.statIcon}>✓</div>
-              <h3>50+</h3>
+              <h3>100+</h3>
               <p>Projects Successfully Delivered</p>
             </div>
             <div className={`reveal ${styles.statCard}`} style={{ transitionDelay: '100ms' }}>
@@ -187,9 +195,12 @@ export default function WorkPage() {
           <div className={styles.ctaContent}>
             <h2>Ready to create something amazing?</h2>
             <p>Let's start your next project and add it to our portfolio.</p>
-            <a href="#contact" className="btn btn--white" onClick={scrollToContact}>
+            <button 
+              className="btn btn--white" 
+              onClick={openModal}
+            >
               Start Your Project →
-            </a>
+            </button>
           </div>
         </div>
       </section>

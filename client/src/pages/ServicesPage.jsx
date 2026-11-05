@@ -1,4 +1,5 @@
 import Hero from '../components/Hero';
+import Ticker from '../components/Ticker';
 import Services from '../components/Services';
 import Brands from '../components/Brands';
 import Stats from '../components/Stats';
@@ -9,6 +10,7 @@ export default function ServicesPage() {
   return (
     <>
       <Hero />
+      <Ticker />
       <Services />
       <Brands />
       <Stats />

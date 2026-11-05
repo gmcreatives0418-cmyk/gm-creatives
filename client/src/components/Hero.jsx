@@ -19,10 +19,6 @@ export default function Hero() {
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const scrollTo = (id) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
     <section className={styles.hero} aria-label="Hero">
 
@@ -46,16 +42,6 @@ export default function Hero() {
             Eight disciplines, one team. From brand identity to digital marketing —
             we handle every piece of your digital presence.
           </p>
-
-          <div className={styles.actions}>
-            <button className="btn btn--red" onClick={() => scrollTo('#services')}>
-              See Our Services
-            </button>
-            <button className={styles.ghost} onClick={() => scrollTo('#contact')}>
-              <span className={styles.playIcon} aria-hidden="true">↗</span>
-              Start a Project
-            </button>
-          </div>
 
           {/* Social proof bar */}
           <div className={styles.proof}>
@@ -118,17 +104,6 @@ export default function Hero() {
           {/* Background blobs */}
           <div className={styles.blob1} aria-hidden="true" />
           <div className={styles.blob2} aria-hidden="true" />
-        </div>
-      </div>
-
-      {/* ── Scrolling ticker at bottom ── */}
-      <div className={styles.ticker} aria-hidden="true">
-        <div className={styles.tickerTrack}>
-          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-            <span key={i} className={styles.tickerItem}>
-              {item} <span className={styles.tickerDot}>✦</span>
-            </span>
-          ))}
         </div>
       </div>
 

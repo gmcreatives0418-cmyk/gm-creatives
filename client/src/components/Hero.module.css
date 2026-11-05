@@ -9,9 +9,9 @@
   background: #0a0a0a;
   position: relative;
   overflow: hidden;
-  padding-top: var(--nav-h);
+  padding-top: calc(var(--nav-h) + 20px);
+  padding-bottom: 20px;
 }
-
 /* ── Two-column wrapper ─────────────────────── */
 .wrapper {
   flex: 1;

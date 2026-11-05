@@ -1,10 +1,36 @@
 import { useRef, useEffect } from 'react';
 import styles from './Brands.module.css';
 
+// Import brand logos
+import gm from '../assets/images/logo.png';
+import gmBakes from '../assets/images/GM Bakes.png';
+import hyperFive from '../assets/images/Hyper Five.png';
+import lovingMovies from '../assets/images/Lovin movies logo gold-01.png';
+import naturolia from '../assets/images/Naturolia Logo-01.png';
+import npLogo from '../assets/images/NP2-01.png';
+import roadLogo from '../assets/images/Road Logo.png';
+import asset1 from '../assets/images/Asset 1.png';
+import asset2 from '../assets/images/Asset 1@500x.png';
+import final from '../assets/images/final.png';
+import logoNewBlack from '../assets/images/logo new Black.png';
+import logoWithBg from '../assets/images/logo with background.png';
+import logo1 from '../assets/images/logo1.png';
+import untitled1 from '../assets/images/Untitled-1.png';
+import whiteCloud from '../assets/images/white cloud.png';
+
 const BRANDS = [
-  'Retail Co.', 'FoodBrand', 'EduCore', 'FaithLife',
-  'EventPro', 'TechNova', 'StyleHouse', 'GreenEats',
-  'BuildRight', 'MindSpace', 'ArtHive', 'SportsPeak',
+  { name: 'GM Creatives', image: gm },
+  { name: 'GM Bakes', image: gmBakes },
+  { name: 'Hyper Five', image: hyperFive },
+  { name: 'Lovin Movies', image: lovingMovies },
+  { name: 'Naturolia', image: naturolia },
+  { name: 'NP', image: npLogo },
+  { name: 'Road', image: roadLogo },
+  { name: 'Asset', image: asset1 },
+  { name: 'Asset HD', image: asset2 },
+  { name: 'Final', image: final },
+  { name: 'Logo Black', image: logoNewBlack },
+  { name: 'Logo BG', image: logoWithBg },
 ];
 
 // Duplicate for seamless infinite scroll
@@ -58,9 +84,9 @@ export default function Brands() {
           onMouseLeave={resume}
           aria-hidden="true"
         >
-          {TRACK_ITEMS.map((name, i) => (
-            <div key={`${name}-${i}`} className={styles.pill}>
-              {name}
+          {TRACK_ITEMS.map((brand, i) => (
+            <div key={`${brand.name}-${i}`} className={styles.pill}>
+              <img src={brand.image} alt={brand.name} className={styles.brandImage} />
             </div>
           ))}
         </div>

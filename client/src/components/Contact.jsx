@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Contact.module.css';
 
 const SERVICES = [
@@ -11,9 +12,18 @@ const SERVICES = [
   'Digital Marketing',
   'Google & Meta Ads',
   'Full Package',
+  'Other',
 ];
 
-const INITIAL = { name: '', email: '', service: '', message: '' };
+const BUDGET_RANGES = [
+  'Under ₹50,000',
+  '₹50,000 - ₹1,00,000',
+  '₹1,00,000 - ₹2,50,000',
+  '₹2,50,000 - ₹5,00,000',
+  '₹5,00,000+',
+];
+
+const INITIAL = { name: '', email: '', service: '', budget: '', message: '' };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -71,17 +81,46 @@ export default function Contact() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
 
     setStatus('submitting');
-    // Simulated submit — swap this for a real API call when backend is ready
-    setTimeout(() => {
-      setStatus('success');
-      setForm(INITIAL);
-    }, 1200);
+    
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: '',
+          service: form.service,
+          budget: form.budget,
+          message: form.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setForm(INITIAL);
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        console.error('Error:', data);
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -110,6 +149,14 @@ export default function Contact() {
                 <p>Thanks! We'll get back to you within 24 hours.</p>
                 <button className="btn btn--white" onClick={() => setStatus('idle')}>
                   Send Another Message
+                </button>
+              </div>
+            ) : status === 'error' ? (
+              <div className={styles.error} role="status" aria-live="polite" style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,0,0,0.1)', borderRadius: '4px' }}>
+                <h3 style={{ color: '#ff0000', marginBottom: '10px' }}>Oops, something went wrong</h3>
+                <p style={{ marginBottom: '15px' }}>We couldn't send your message. Please try again.</p>
+                <button className="btn btn--white" onClick={() => setStatus('idle')}>
+                  Try Again
                 </button>
               </div>
             ) : (
@@ -161,6 +208,18 @@ export default function Contact() {
                   <option value="" disabled>Service you're interested in</option>
                   {SERVICES.map((s) => (
                     <option key={s} value={s}>{s}</option>
+                  ))}
+                </select>
+
+                <select
+                  name="budget"
+                  value={form.budget}
+                  onChange={handleChange}
+                  aria-label="Budget range"
+                >
+                  <option value="">Select budget</option>
+                  {BUDGET_RANGES.map((b) => (
+                    <option key={b} value={b}>{b}</option>
                   ))}
                 </select>
 

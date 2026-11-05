@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useContactModal } from '../contexts/ContactModalContext';
 import styles from './Stats.module.css';
 
 const STATS = [
@@ -64,10 +65,10 @@ function StatItem({ stat, active, index }) {
 }
 
 export default function Stats() {
+  const { openModal } = useContactModal();
   const [active, setActive] = useState(false);
   const sectionRef = useRef(null);
 
-  // Start counters once section enters viewport
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -94,19 +95,14 @@ export default function Stats() {
               We measure success by the growth of the brands we work with —
               not just the work we deliver.
             </p>
-            <a
-              href="#contact"
+            <button
               className="btn btn--red"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
+              onClick={openModal}
             >
               Start Your Project →
-            </a>
+            </button>
           </div>
 
-          {/* Right — stat grid */}
           <div className={styles.grid}>
             {STATS.map((stat, i) => (
               <StatItem key={stat.label} stat={stat} active={active} index={i} />

@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './AboutPage.module.css';
 
@@ -26,7 +27,7 @@ const TEAM_VALUES = [
 ];
 
 const TEAM_STATS = [
-  { number: '50+', label: 'Projects Completed' },
+  { number: '100+', label: 'Projects Completed' },
   { number: '8', label: 'Disciplines' },
   { number: '100%', label: 'Client Satisfaction' },
   { number: '24hr', label: 'Response Time' },
@@ -64,6 +65,7 @@ function StatBox({ stat, index }) {
 }
 
 export default function AboutPage() {
+  const navigate = useNavigate();
   const heroRef = useScrollReveal();
   const storyRef = useScrollReveal();
   const valuesRef = useScrollReveal();
@@ -179,12 +181,9 @@ export default function AboutPage() {
           <div className={styles.ctaContent}>
             <h2>Ready to work with us?</h2>
             <p>Let's discuss your project and how we can help your brand grow.</p>
-            <a href="#contact" className="btn btn--white" onClick={(e) => {
-              e.preventDefault();
-              document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}>
+            <button className="btn btn--white" onClick={() => navigate('/contact')}>
               Start a Conversation →
-            </a>
+            </button>
           </div>
         </div>
       </section>

@@ -16,11 +16,11 @@ const SERVICES = [
 ];
 
 const BUDGET_RANGES = [
-  'Under $5,000',
-  '$5,000 - $10,000',
-  '$10,000 - $25,000',
-  '$25,000 - $50,000',
-  '$50,000+',
+  'Under ₹50,000',
+  '₹50,000 - ₹1,00,000',
+  '₹1,00,000 - ₹2,50,000',
+  '₹2,50,000 - ₹5,00,000',
+  '₹5,00,000+',
 ];
 
 const CONTACT_INFO = [
@@ -84,6 +84,7 @@ function InfoCard({ info, index }) {
 }
 
 export default function ContactPage() {
+  const lastSubmitTimeRef = useRef(0);
   const [form, setForm] = useState(INITIAL);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
@@ -111,17 +112,68 @@ export default function ContactPage() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
 
+    // Rate limiting: prevent multiple submissions within 60 seconds
+    const now = Date.now();
+    const timeSinceLastSubmit = now - lastSubmitTimeRef.current;
+    if (timeSinceLastSubmit < 60000) { // 60 seconds
+      const secondsLeft = Math.ceil((60000 - timeSinceLastSubmit) / 1000);
+      setErrors({ submit: `Please wait ${secondsLeft}s before submitting again.` });
+      setStatus('error');
+      setTimeout(() => {
+        setStatus('idle');
+        setErrors({});
+      }, 3000);
+      return;
+    }
+
     setStatus('submitting');
-    setTimeout(() => {
-      setStatus('success');
-      setForm(INITIAL);
+    lastSubmitTimeRef.current = now;
+    
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: '',
+          service: form.service,
+          budget: form.budget,
+          message: form.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setForm(INITIAL);
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        console.error('Error:', data);
+        // Check if it's a rate limit error from backend
+        if (response.status === 429) {
+          setErrors({ submit: 'Too many submissions. Please try again later.' });
+        } else {
+          setErrors({ submit: data.error || 'Failed to send message' });
+        }
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setErrors({ submit: 'Network error. Please check your connection.' });
+      setStatus('error');
       setTimeout(() => setStatus('idle'), 3000);
-    }, 1200);
+    }
   };
 
   return (
@@ -169,6 +221,14 @@ export default function ContactPage() {
                 <p>Thanks for reaching out. We'll review your message and get back to you soon.</p>
                 <button className="btn btn--red" onClick={() => setStatus('idle')}>
                   Send Another Message
+                </button>
+              </div>
+            ) : status === 'error' ? (
+              <div className={styles.error} role="status" aria-live="polite" style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#fee', borderRadius: '8px' }}>
+                <h3 style={{ color: '#c00', marginBottom: '10px' }}>Oops, something went wrong</h3>
+                <p style={{ marginBottom: '20px' }}>We couldn't send your message. Please try again or contact us directly at hello@gmcreatives.com</p>
+                <button className="btn btn--red" onClick={() => setStatus('idle')}>
+                  Try Again
                 </button>
               </div>
             ) : (
