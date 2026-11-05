@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 module.exports = {
   port: process.env.PORT,
   email: {
@@ -8,7 +10,7 @@ module.exports = {
     to: process.env.EMAIL_TO,
   },
   cors: {
-    origin:process.env.FRONTEND_URL,
+    origin: isDev ? ['http://localhost:5173', 'http://localhost:3000'] : process.env.FRONTEND_URL,
     credentials: true,
   },
   nodeEnv: process.env.NODE_ENV,
