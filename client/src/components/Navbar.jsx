@@ -99,7 +99,14 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <a href="#contact" className="btn btn--red" onClick={(e) => handleAnchor(e, '#contact')}>
+          <a 
+            href="#contact" 
+            className={styles.mobileCtaButton}
+            onClick={(e) => {
+              handleAnchor(e, '#contact');
+              setMenuOpen(false);
+            }}
+          >
             Let's Talk
           </a>
         </div>

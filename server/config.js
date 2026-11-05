@@ -7,11 +7,8 @@ module.exports = {
     pass: process.env.EMAIL_PASS,
     to: process.env.EMAIL_TO,
   },
-  cors: {
-    origin: [
-  "https://gm-creatives.vercel.app",
-  "http://localhost:5173"
-],
+ cors: {
+    origin: process.env.FRONTEND_URL.split(","),
     credentials: true,
   }
 };
