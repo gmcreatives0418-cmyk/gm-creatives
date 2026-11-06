@@ -17,6 +17,7 @@ import logoWithBg from '../assets/images/logo with background.png';
 import logo1 from '../assets/images/logo1.png';
 import untitled1 from '../assets/images/Untitled-1.png';
 import whiteCloud from '../assets/images/white cloud.png';
+import patialaBikers from '../assets/images/patiala-bikers.png';
 
 const BRANDS = [
   { name: 'GM Creatives', image: gm },
@@ -31,6 +32,10 @@ const BRANDS = [
   { name: 'Final', image: final },
   { name: 'Logo Black', image: logoNewBlack },
   { name: 'Logo BG', image: logoWithBg },
+  { name: 'Logo1', image: logo1 },
+  { name: 'Untitled1', image: untitled1 },
+  { name: 'WhiteCloud', image:whiteCloud },
+  { name: 'Patiala-bikers', image:patialaBikers }
 ];
 
 // Duplicate for seamless infinite scroll
