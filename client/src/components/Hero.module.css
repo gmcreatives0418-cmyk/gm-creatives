@@ -131,6 +131,8 @@
 
 .avatars {
   display: flex;
+  flex-wrap: nowrap;
+  overflow: visible;
 }
 .avatar {
   width: 34px; height: 34px;
@@ -387,10 +389,46 @@
   }
   .card { max-width: 360px; }
   .blob1 { width: 260px; height: 260px; }
+  
+  /* Tablet avatar adjustments */
+  .avatar {
+    width: 30px;
+    height: 30px;
+    margin-left: -7px;
+  }
 }
 
 @media (max-width: 520px) {
   .title { font-size: 2.4rem; }
   .visual { display: none; }
   .actions { flex-direction: column; align-items: flex-start; }
+  
+  /* Hero padding reduction */
+  .hero {
+    padding-top: calc(var(--nav-h) + 12px);
+    padding-bottom: 12px;
+  }
+  
+  .wrapper {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    gap: 20px;
+  }
+  
+  /* Reduce avatar size and gap on small screens */
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-width: 1.5px;
+    margin-left: -6px;
+  }
+  
+  .proof {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .proof p {
+    font-size: 0.75rem;
+  }
 }

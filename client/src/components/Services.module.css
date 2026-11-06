@@ -204,12 +204,56 @@
 @media (max-width: 520px)  { .grid, .loading { grid-template-columns: 1fr; } }
 
 @media (max-width: 860px) {
-  .moreStrip { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .moreStrip { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    padding: 28px 24px; 
+    gap: 16px;
+  }
+  
+  .moreLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 1;
+    width: 100%;
+  }
+  
+  .moreDots {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    flex-shrink: 0;
+  }
+  
+  .moreLabel {
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+  
   .moreActions { margin-left: 0; width: 100%; flex-wrap: wrap; }
   .actionButtons { width: 100%; display: flex; gap: 14px; }
   .moreLabel { white-space: normal; }
 }
 @media (max-width: 480px) {
+  .moreStrip {
+    padding: 20px 16px;
+    gap: 12px;
+  }
+  
+  .moreLeft {
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .moreDots {
+    display: none;
+  }
+  
+  .moreLabel {
+    font-size: 0.85rem;
+    white-space: normal;
+  }
+  
   .moreActions .btn { width: 100%; justify-content: center; }
   .actionButtons { flex-direction: column; }
   .actionButtons .btn { width: 100%; justify-content: center; }
