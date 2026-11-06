@@ -192,7 +192,11 @@ export default function Services() {
               </Link>
               <button 
                 className="btn btn--red" 
-                onClick={openModal}
+                onClick={() => {
+                  console.log('Services button clicked');
+                  openModal();
+                }}
+                type="button"
               >
                 Discuss Your Project →
               </button>

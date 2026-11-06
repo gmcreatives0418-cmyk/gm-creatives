@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ContactModalProvider } from './contexts/ContactModalContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,11 +11,6 @@ import CaseStudyPage from './pages/CaseStudyPage';
 import ContactPage from './pages/ContactPage';
 
 export default function App() {
-  const location = useLocation();
-  const isHome = location.pathname === '/';
-  const isWork = location.pathname === '/work';
-  const isServices = location.pathname === '/services';
-
   return (
     <ContactModalProvider>
       <Navbar />
@@ -30,7 +25,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-      {(isHome || isWork || isServices) && <ContactModal />}
+      <ContactModal />
     </ContactModalProvider>
   );
 }

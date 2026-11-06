@@ -69,6 +69,11 @@ export default function Stats() {
   const [active, setActive] = useState(false);
   const sectionRef = useRef(null);
 
+  const handleClick = () => {
+    console.log('Stats button clicked');
+    openModal();
+  };
+
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -97,7 +102,8 @@ export default function Stats() {
             </p>
             <button
               className="btn btn--red"
-              onClick={openModal}
+              onClick={handleClick}
+              type="button"
             >
               Start Your Project →
             </button>

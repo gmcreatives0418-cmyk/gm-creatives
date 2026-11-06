@@ -45,13 +45,26 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
 
-  // Close modal when user reaches contact section
-  useEffect(() => {
-    closeModal();
-  }, [closeModal]); // idle | submitting | success
-
   const textRef = useRef(null);
   const formRef = useRef(null);
+  const sectionRef = useRef(null);
+
+  // Close modal only when Contact section comes into view
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          closeModal();
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [closeModal]);
 
   // Scroll-reveal both columns — each observer properly cleaned up
   useEffect(() => {
@@ -131,7 +144,7 @@ export default function Contact() {
   };
 
   return (
-    <section className={styles.section} id="contact" aria-label="Contact us">
+    <section className={styles.section} id="contact" aria-label="Contact us" ref={sectionRef}>
       <div className={styles.circle1} aria-hidden="true" />
       <div className={styles.circle2} aria-hidden="true" />
 
