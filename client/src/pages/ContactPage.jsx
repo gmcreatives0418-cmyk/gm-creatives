@@ -245,7 +245,7 @@ export default function ContactPage() {
                       id="name"
                       type="text"
                       name="name"
-                      placeholder="John Doe"
+                      placeholder="Enter name"
                       value={form.name}
                       onChange={handleChange}
                       aria-label="Your Name"
