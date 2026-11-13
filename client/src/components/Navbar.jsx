@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useContactModal } from '../contexts/ContactModalContext';
 import styles from './Navbar.module.css';
 import navLogo from '../assets/images/nav-logo.png';
 
@@ -15,7 +16,20 @@ export default function Navbar() {
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
   const { pathname }              = useLocation();
+  const { openModal }             = useContactModal();
 
+  const handleLetsTalk = () => {
+    // On contact page, scroll to form instead of opening modal
+    if (pathname === '/contact') {
+      const formSection = document.querySelector('[data-section="contact-form"]');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      // On other pages, open modal
+      openModal();
+    }
+  };
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -66,9 +80,14 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href="#contact" className="btn btn--nav" onClick={(e) => handleAnchor(e, '#contact')}>
+        <button 
+          className="btn btn--nav" 
+          onClick={handleLetsTalk}
+          type="button"
+          aria-label="Open contact form"
+        >
           Let's Talk
-        </a>
+        </button>
 
         {/* Hamburger */}
         <button
@@ -99,16 +118,17 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <a 
-            href="#contact" 
+          <button 
             className={styles.mobileCtaButton}
-            onClick={(e) => {
-              handleAnchor(e, '#contact');
+            onClick={() => {
+              handleLetsTalk();
               setMenuOpen(false);
             }}
+            type="button"
+            aria-label="Open contact form"
           >
             Let's Talk
-          </a>
+          </button>
         </div>
       )}
     </nav>

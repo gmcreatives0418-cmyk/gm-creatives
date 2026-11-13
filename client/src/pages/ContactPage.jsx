@@ -201,7 +201,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className={styles.formSection}>
+      <section className={styles.formSection} data-section="contact-form">
         <div className="container">
           <div className={styles.formWrapper}>
             <div className={`reveal ${styles.formHeader}`}>
